@@ -3,173 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f9;
-        }
-        .container {
-            width: 100%;
-            max-width: 500px;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .todo-input {
-            display: flex;
-            margin-bottom: 20px;
-        }
-        .todo-input input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-right: 10px;
-        }
-        .todo-input button {
-            padding: 10px 15px;
-            border: none;
-            background: #007bff;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .todo-input button:hover {
-            background: #0056b3;
-        }
-        .todo-list {
-            list-style: none;
-            padding: 0;
-        }
-        .todo-list li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        .todo-list li:last-child {
-            border-bottom: none;
-        }
-        .todo-list button {
-            margin-left: 10px;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        .edit {
-            background: #ffc107;
-            color: white;
-        }
-        .edit:hover {
-            background: #e0a800;
-        }
-        .delete {
-            background: #dc3545;
-            color: white;
-        }
-        .delete:hover {
-            background: #b21f3d;
-        }
-    </style>
+    <link rel="stylesheet" href="Style.css">
+    <title>Todo</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Todo List</h1>
-        <div class="todo-input">
-            <input type="text" id="todo-input" placeholder="Enter your task here">
-            
+    <div class="Container">
+        <h2>Todo-List</h2>
+        <div>
+            <input type="text" placeholder="Enter your task" id="todo-input">
             <button id="add-btn">Add</button>
         </div>
-        <ul id="todo-list" class="todo-list"></ul>
+        <ul id="todo-list"></ul>
     </div>
-
-    <script>
-        const todoInput = document.getElementById('todo-input');
-        const addBtn = document.getElementById('add-btn');
-        const todoList = document.getElementById('todo-list');
-
-        let todos = JSON.parse(localStorage.getItem('todos')) || [];
-
-        function saveTodos() {
-            localStorage.setItem('todos', JSON.stringify(todos));
-        }
-
-        function renderTodos() {
-            todoList.innerHTML = '';
-            todos.forEach((todo, index) => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <span>${todo}</span>
-                    <div>
-                        <button class="edit" onclick="startEdit(${index})">Edit</button>
-                        <button class="delete" onclick="deleteTodo(${index})">Delete</button>
-                    </div>
-                `;
-                todoList.appendChild(li);
-            });
-        }
-
-        function addTodo() {
-            const newTodo = todoInput.value.trim();
-            console.log('new')
-            if (newTodo) {
-                todos.push(newTodo);
-                saveTodos();
-                renderTodos();
-                todoInput.value = '';
-            }
-        }
-
-        function deleteTodo(index) {
-            todos.splice(index, 1);
-            saveTodos();
-            renderTodos();
-        }
-
-        function startEdit(index) {
-    todoInput.value = todos[index];
-    addBtn.textContent = "Update";
-    addBtn.onclick = () => updateTask(index);
-}
-
-        function updateTask(index) {
-    const updatedTodo = todoInput.value.trim();
-    console.log(todoInput.value)
-    console.log(updatedTodo);
-    if (updatedTodo){
-        todos[index] = updatedTodo;
-        saveTodos();
-        renderTodos();
-        todoInput.value = '';
-        resetAddButton();
-    }
-}
-function resetAddButton() {
-    console.log('add')
-    addBtn.textContent = "Add";
-    addBtn.onclick = addTodo;
-}
-        todoInput.addEventListener('click', (e) => {
-                console.log(addBtn.textContent)
-                if (addBtn.textContent === "Add") {
-                    addTodo();
-                }
-        });
-        renderTodos();
-    </script>
 </body>
+<script src="Script.js"></script>
 </html>

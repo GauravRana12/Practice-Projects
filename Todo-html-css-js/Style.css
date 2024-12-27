@@ -1,0 +1,51 @@
+.Container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#todo-list{
+    list-style: none;
+}
+
+#todo-list button{
+    margin-left: 10px;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+input#todo-input {
+    width: 200px;
+    padding: 12px;
+    border-radius: 25px;
+    border: 0.5px solid #d2d2c2;
+}
+#add-btn{
+    padding: 10px 15px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+li{
+    display: flex;
+    justify-content: space-around;
+    width: 400px;
+    margin-top: 20px;
+}
+.edit {
+    background: #ffc107;
+    color: white;
+}
+.edit:hover {
+    background: #e0a800;
+}
+.delete {
+    background: #dc3545;
+    color: white;
+}
+.delete:hover {
+    background: #b21f3d;
+}
